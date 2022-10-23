@@ -15,7 +15,7 @@
                         @click="onLogin">请登陆
                     </a-button>
                     <a-divider direction="vertical" margin="2px" />
-                    <a-button type="text" size="mini" style="color:rgba(16, 16, 16, 1);">请注册</a-button>
+                    <a-button type="text" size="mini" style="color:rgba(16, 16, 16, 1);" @click="onRegister">请注册</a-button>
                 </a-space>
                 <a-space size="mini">
                     <a-button type="text" size="mini" style="color:rgba(16, 16, 16, 1);">个人中心</a-button>
@@ -39,10 +39,17 @@ export default {
             router.push({
                 name: "Login"
             })
+        } 
+
+        const onRegister = ()=>{
+            router.push({
+                name: "Register"
+            })
         }
 
         return {
-            onLogin
+            onLogin,
+            onRegister
         }
     },
 }

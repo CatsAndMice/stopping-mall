@@ -2,9 +2,6 @@
     <a-layout style="height: 100vh;">
         <page-header />
         <a-layout-content>
-
-
-            
             <a-carousel :style="{
               height: '341px',
             }" :default-current="2" @change="handleChange">

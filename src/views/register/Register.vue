@@ -1,7 +1,7 @@
 <template>
     <page-header :is-show-extra="false" />
-    <div class="login-view">
-        <div class="login-contain">
+    <div class="register-view">
+        <div class="register-contain">
             <a-form :model="form" style="width: 300px;" @submit="handleSubmit">
                 <a-form-item field="name" label="Username">
                     <template #label>
@@ -30,7 +30,7 @@
 <script>
 import PageHeader from "@/components/PageHeader.vue"
 import { reactive } from "vue"
-import checkLoginInfo from "./js/checkLoginInfo.js"
+import checkLoginInfo from "@/views/login/js/checkLoginInfo.js"
 import { successNotification } from "@/utils/notification.js"
 
 export default {
@@ -45,8 +45,8 @@ export default {
         })
         const handleSubmit = (data) => {
             console.log(data)
-            if (checkLoginInfo(data.values,'登陆失败')) {
-                successNotification({content:'登陆成功'})
+            if (checkLoginInfo(data.values, '注册失败')) {
+                successNotification({ content: '注册成功' })
             }
         }
 
@@ -58,13 +58,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.login-view {
+.register-view {
     height: calc(100vh - 59px);
     background-size: cover;
     background-image: url(https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp);
     position: relative;
 
-    .login-contain {
+    .register-contain {
         position: absolute;
         border-radius: 4px;
         right: 58px;

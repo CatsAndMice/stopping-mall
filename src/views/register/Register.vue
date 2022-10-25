@@ -44,7 +44,6 @@ export default {
             isRead: false,
         })
         const handleSubmit = (data) => {
-            console.log(data)
             if (checkLoginInfo(data.values, '注册失败')) {
                 successNotification({ content: '注册成功' })
             }

@@ -1,13 +1,22 @@
 import {
-    Layout, LayoutHeader, LayoutContent, Divider, Button,
-    Carousel, CarouselItem, LayoutFooter, Space, PageHeader,
+    Layout,
+    LayoutHeader,
+    LayoutContent,
+    Divider,
+    Button,
+    Carousel,
+    CarouselItem,
+    LayoutFooter,
+    Space,
+    PageHeader,
     FormItem,
-    Form,Input,
+    Form,
+    Input,
     Checkbox,
-    
+    Grid
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
-import { IconUser,IconLock } from '@arco-design/web-vue/es/icon';
+import { IconUser, IconLock } from '@arco-design/web-vue/es/icon';
 export default {
     install(Vue) {
         console.log(Vue);
@@ -27,6 +36,7 @@ export default {
             .use(Checkbox)
             .use(IconUser)
             .use(IconLock)
+            .use(Grid)
     }
 }
 

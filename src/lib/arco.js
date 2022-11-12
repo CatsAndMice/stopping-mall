@@ -13,7 +13,11 @@ import {
     Form,
     Input,
     Checkbox,
-    Grid
+    Grid,
+    List,
+    ListItem,
+    InputPassword,
+    Image
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
 import { IconUser, IconLock } from '@arco-design/web-vue/es/icon';
@@ -37,6 +41,10 @@ export default {
             .use(IconUser)
             .use(IconLock)
             .use(Grid)
+            .use(InputPassword)
+            .use(List)
+            .use(ListItem)
+            .use(Image)
     }
 }
 

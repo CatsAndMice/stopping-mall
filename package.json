@@ -7,6 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@vueuse/core": "^9.5.0",
+    "axios": "^1.1.3",
     "coco-git": "^1.3.6",
     "core-js": "^3.8.3",
     "medash": "^v3.4.1",

@@ -1,5 +1,5 @@
 <template>
-    <page-header :is-show-extra="false" />
+    <a-page-header title="登陆" @back="onBack" />
     <div class="login-view">
         <div class="login-contain">
             <a-form :model="form" style="width: 300px;" @submit="handleSubmit">
@@ -13,7 +13,7 @@
                     <template #label>
                         <icon-lock />
                     </template>
-                    <a-input v-model="form.password" placeholder="请输入密码" style="width: 200px;" />
+                    <a-input-password v-model="form.password" placeholder="请输入密码" style="width: 200px;" />
                 </a-form-item>
                 <a-form-item>
                     <a-button html-type="submit" type="primary" long style="width: 200px;">登陆</a-button>
@@ -29,30 +29,41 @@
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue"
-import { reactive } from "vue"
+import { reactive, toRaw } from "vue"
 import checkLoginInfo from "./js/checkLoginInfo.js"
 import { successNotification } from "@/utils/notification.js"
-
+import { login } from "@/http/user.js"
+import { onBack } from "./js/page"
+import { useStorage } from "@vueuse/core"
 export default {
     components: {
         PageHeader
     },
     setup() {
+
         const form = reactive({
             name: '',
             password: '',
             isRead: false,
         })
-        const handleSubmit = (data) => {
-            console.log(data)
-            if (checkLoginInfo(data.values,'登陆失败')) {
-                successNotification({content:'登陆成功'})
+
+        const handleSubmit = async (data) => {
+            if (checkLoginInfo(data.values, '登陆失败')) {
+                const result = await login(toRaw(form))
+                const loginData = result
+                if (loginData) {
+                    console.log(loginData);
+                    useStorage('user', loginData)
+                    successNotification({ content: '登陆成功' })
+                    onBack()
+                }
             }
         }
 
         return {
             form,
-            handleSubmit
+            handleSubmit,
+            onBack
         }
     },
 }
@@ -68,8 +79,8 @@ export default {
         position: absolute;
         border-radius: 4px;
         right: 58px;
-        top: 236px;
-        ;
+        top: 50%;
+        transform: translateY(-50%);
         width: 477px;
         height: 391px;
         display: flex;

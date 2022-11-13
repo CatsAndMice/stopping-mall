@@ -7,8 +7,8 @@ export default (cb) => {
             return img
         })
     }
-    const getList = async () => {
-        const { data } = await cb()
+    const getList = async (params) => {
+        const { data } = await cb(params)
         list.value = data
     }
     return {

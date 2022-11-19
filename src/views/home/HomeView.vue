@@ -1,5 +1,5 @@
 <template>
-    <a-layout style="height: 100vh;">
+    <a-layout >
         <page-header />
         <a-layout-content>
             <a-row :gutter="8" style="margin-top:40px;display: flex;align-items: center;">
@@ -103,7 +103,7 @@
 
 
         <a-layout-footer>
-
+            <good-footer />
         </a-layout-footer>
     </a-layout>
 </template>
@@ -148,10 +148,10 @@ export default {
         })
 
         const onSearch = () => {
-            const name =  unref(goodName)
-            if(!name){
-                errorNotification({content:'请输入商品名称'})
-                return 
+            const name = unref(goodName)
+            if (!name) {
+                errorNotification({ content: '请输入商品名称' })
+                return
             }
             router.push({
                 name: "GoodsList", query: {

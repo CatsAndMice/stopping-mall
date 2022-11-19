@@ -19,13 +19,17 @@ import {
     InputPassword,
     Image,
     Pagination,
-    InputNumber
+    InputNumber,
+    Menu,
+    SubMenu,
+    MenuItem,
+    Table,
+    TableColumn
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
-import { IconUser, IconLock } from '@arco-design/web-vue/es/icon';
+import {IconUser, IconLock ,IconHome,IconEmail} from '@arco-design/web-vue/es/icon';
 export default {
     install(Vue) {
-        console.log(Vue);
         Vue.use(Layout)
             .use(LayoutHeader)
             .use(LayoutContent)
@@ -49,6 +53,13 @@ export default {
             .use(Image)
             .use(Pagination)
             .use(InputNumber)
+            .use(Menu)
+            .use(MenuItem)
+            .use(SubMenu)
+            .use(IconHome)
+            .use(IconEmail)
+            .use(Table)
+            .use(TableColumn)
     }
 }
 

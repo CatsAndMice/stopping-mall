@@ -34,7 +34,7 @@
             <a-button @click="onClick" size="large" style="border-radius: 4px;">删除</a-button>
         </div>
     </div>
-
+    <good-footer />
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue"

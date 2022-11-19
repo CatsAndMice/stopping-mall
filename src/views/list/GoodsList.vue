@@ -9,9 +9,9 @@
             title="商品" :money="200" />
     </div>
     <div style="display:flex;justify-content: center;">
-        <a-pagination :total="200" @change="onChange"/>
+        <a-pagination :total="200" @change="onChange" />
     </div>
-
+    <good-footer />
 </template>
 <script>
 import { getListByName } from "@/http/type"
@@ -36,7 +36,7 @@ export default {
             return await getListByName(params)
         })
 
-        const onChange = (page)=>{
+        const onChange = (page) => {
             params.page = page
             getList(params)
         }

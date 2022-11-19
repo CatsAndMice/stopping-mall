@@ -41,7 +41,7 @@
         </a-col>
     </a-row>
 
-
+    <good-footer />
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue"
@@ -55,7 +55,7 @@ export default {
         const route = useRoute()
         const { id } = route.query
         const  onClick = ()=>{
-            router.push({name:"GoodCar"})
+            router.push({name:"OrderData"})
         }
 
         return {

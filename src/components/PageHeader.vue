@@ -27,7 +27,7 @@
 
                 </a-space>
                 <a-space size="mini">
-                    <a-button type="text" size="mini" style="color:rgba(16, 16, 16, 1);">个人中心</a-button>
+                    <a-button type="text" size="mini" style="color:rgba(16, 16, 16, 1);" @click="toUserCenter">个人中心</a-button>
                 </a-space>
             </template>
         </a-page-header>
@@ -63,10 +63,17 @@ export default {
             })
         }
 
+        const toUserCenter = ()=>{
+            router.push({
+                name: "UserCenter"
+            })
+        }
+
         return {
             onLogin,
             onRegister,
-            user
+            user,
+            toUserCenter
         }
     },
 }

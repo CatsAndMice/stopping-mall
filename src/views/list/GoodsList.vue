@@ -8,9 +8,11 @@
             src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2"
             title="商品" :money="200" />
     </div>
+    
     <div style="display:flex;justify-content: center;">
         <a-pagination :total="200" @change="onChange" />
     </div>
+
     <good-footer />
 </template>
 <script>

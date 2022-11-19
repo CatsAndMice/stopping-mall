@@ -3,6 +3,8 @@ import HomeView from "@/views/home/HomeView.vue"
 import Login from "@/views/login/Login.vue"
 import Register from "@/views/register/Register.vue"
 import GoodsList from "@/views/list/GoodsList.vue"
+import GoodDetail from "@/views/list/GoodDetail.vue"
+import GoodCar from "@/views/list/GoodCar.vue"
 const routes = [
   {
     path: '/',
@@ -11,18 +13,28 @@ const routes = [
   },
   {
     path: '/login',
-    name:'Login',
-    component:Login
+    name: 'Login',
+    component: Login
   },
   {
     path: '/register',
-    name:'Register',
-    component:Register
+    name: 'Register',
+    component: Register
   },
   {
     path: '/goodsList',
-    name:'GoodsList',
-    component:GoodsList
+    name: 'GoodsList',
+    component: GoodsList
+  },
+  {
+    path: '/goodDetail',
+    name: 'GoodDetail',
+    component: GoodDetail
+  },
+  {
+    path: '/goodCar',
+    name: "GoodCar",
+    component: GoodCar
   }
 ]
 

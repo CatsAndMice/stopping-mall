@@ -17,7 +17,9 @@ import {
     List,
     ListItem,
     InputPassword,
-    Image
+    Image,
+    Pagination,
+    InputNumber
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
 import { IconUser, IconLock } from '@arco-design/web-vue/es/icon';
@@ -45,6 +47,8 @@ export default {
             .use(List)
             .use(ListItem)
             .use(Image)
+            .use(Pagination)
+            .use(InputNumber)
     }
 }
 

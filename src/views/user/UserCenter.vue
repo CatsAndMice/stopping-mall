@@ -6,7 +6,7 @@
                 <h3 style="margin: 0; height: 48px;color: rgba(16, 16, 16, 1);font-size: 20px;text-align: left;">我的个人信息
                 </h3>
                 <a-menu :style="{ width: '200px', height: '100%' }" :default-open-keys="['0']"
-                    :default-selected-keys="['0_1']">
+                    :default-selected-keys="['0_0_0']">
                     <a-menu-item key="0_0_0" data-obj="1">
                         <template #icon>
                             <icon-home />
@@ -30,7 +30,7 @@
                         <a-menu-item key="1_1">帮助中心</a-menu-item>
                     </a-sub-menu>
 
-                    <a-menu-item key="0_0_0" data-obj="1">
+                    <a-menu-item key="0_0_0_0" >
                         <template #icon>
                             <icon-user />
                         </template>
@@ -46,11 +46,14 @@
 <script>
 import PageHeader from "@/components/PageHeader.vue"
 
+
 export default {
     components: {
         PageHeader
     },
     setup() {
+
+      
         return {
             
         }

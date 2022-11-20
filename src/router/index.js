@@ -8,6 +8,7 @@ import GoodCar from "@/views/list/GoodCar.vue"
 import UserCenter from "@/views/user/UserCenter.vue"
 import OrderTable from "@/views/user/OrderTable.vue"
 import OrderData from "@/views/user/OrderData.vue"
+import ClearPage from "@/views/user/ClearPage.vue"
 const routes = [
   {
     path: '/',
@@ -38,6 +39,11 @@ const routes = [
     path: '/goodCar',
     name: "GoodCar",
     component: GoodCar
+  },
+  {
+    path: '/clearPage',
+    name: "ClearPage",
+    component: ClearPage
   },
   {
     path: '/userCenter',

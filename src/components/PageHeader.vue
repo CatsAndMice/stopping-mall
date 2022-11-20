@@ -45,12 +45,12 @@ export default {
     },
     setup() {
         const router = useRouter()
-        const user = useStorage('user', {}, undefined, {
+        const user = useStorage('user', null, undefined, {
             serializer: {
                 read: (v) => v ? JSON.parse(v) : null,
                 write: (v) => JSON.stringify(v)
             },
-        },)
+        })
         const onLogin = () => {
             router.push({
                 name: "Login"
@@ -65,7 +65,7 @@ export default {
 
         const toUserCenter = ()=>{
             router.push({
-                name: "UserCenter"
+                name: "OrderData"
             })
         }
 

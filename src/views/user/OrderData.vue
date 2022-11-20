@@ -3,7 +3,7 @@
         <div style="display:flex;align-items: center;">
             <a-image width="165" :preview="false" height="114"
                 src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2" />
-            <h3 style="margin:0;margin-left: 62px;font-size: 28px;font-weight: 400;">封楼小王子</h3>
+            <h3 style="margin:0;margin-left: 62px;font-size: 28px;font-weight: 400;">{{user?user.no:'封楼小王子'}}</h3>
         </div>
 
         <a-row style="margin-top: 95px;">
@@ -45,6 +45,7 @@
 </template>
 <script>
 import { useRouter } from "vue-router"
+import { useStorage } from '@vueuse/core'
 export default {
     setup() {
         const router = useRouter()
@@ -53,9 +54,16 @@ export default {
                 name: 'OrderTable'
             })
         }
+        const user = useStorage('user', null, undefined, {
+            serializer: {
+                read: (v) => v ? JSON.parse(v) : null,
+                write: (v) => JSON.stringify(v)
+            },
+        })
 
         return {
-            onClick
+            onClick,
+            user
         }
     },
 }

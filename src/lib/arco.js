@@ -1,4 +1,6 @@
 import {
+    Radio,
+    RadioGroup,
     Layout,
     LayoutHeader,
     LayoutContent,
@@ -24,10 +26,11 @@ import {
     SubMenu,
     MenuItem,
     Table,
-    TableColumn
+    TableColumn,
+    Modal
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
-import {IconUser, IconLock ,IconHome,IconEmail} from '@arco-design/web-vue/es/icon';
+import {IconPlus,IconUser,IconWechatpay,IconAlipayCircle, IconLock ,IconHome,IconEmail} from '@arco-design/web-vue/es/icon';
 export default {
     install(Vue) {
         Vue.use(Layout)
@@ -60,6 +63,12 @@ export default {
             .use(IconEmail)
             .use(Table)
             .use(TableColumn)
+            .use(IconAlipayCircle)
+            .use(IconWechatpay)
+            .use(IconPlus)
+            .use(Modal)
+            .use(Radio)
+            .use(RadioGroup)
     }
 }
 

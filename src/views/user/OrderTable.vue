@@ -1,6 +1,6 @@
 <template>
     <div style="margin-left:37px;flex-grow: 1;padding-right:42px;">
-        <a-table :data="data">
+        <a-table :data="list">
             <template #columns>
                 <a-table-column title="订单号">
                     <template #cell="{ record }">
@@ -50,15 +50,26 @@
 
 </template>
 <script>
+import { getOrderGoodList } from "@/http/getDetail.js"
+import { onBeforeMount } from 'vue'
+import { useStorage } from '@vueuse/core'
+import useList from "@/views/home/js/useList.js"
 export default {
     setup() {
-        const data = [{
-            name: '你好',
-            age: 20
-        }]
+        const user = useStorage('user', null, undefined, {
+            serializer: {
+                read: (v) => v ? JSON.parse(v) : null,
+                write: (v) => JSON.stringify(v)
+            },
+        })
+        const { list, getList } = useList(async () => {
+            return await getOrderGoodList(user.value.id)
+        })
+     
 
+        onBeforeMount(getList)
         return {
-            data
+            list
         }
     },
 }

@@ -1,12 +1,8 @@
 <template>
     <page-header />
-
     <div class="list" style="min-height:600px">
         <good-cord v-for="type in typeListRef" :src="type.img" :id="type.id" :key="type.id" :title="type.trade_name"
             :money="type.price" />
-        <good-cord
-            src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2"
-            title="商品" :money="200" />
     </div>
     
     <div style="display:flex;justify-content: center;">

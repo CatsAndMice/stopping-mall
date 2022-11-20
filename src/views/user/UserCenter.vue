@@ -30,7 +30,7 @@
                         <a-menu-item key="1_1">帮助中心</a-menu-item>
                     </a-sub-menu>
 
-                    <a-menu-item key="0_0_0_0" >
+                    <a-menu-item key="0_0_0_0" @click="onClick">
                         <template #icon>
                             <icon-user />
                         </template>
@@ -45,17 +45,28 @@
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue"
-
-
+import { useStorage } from '@vueuse/core'
+import {useRouter} from "vue-router"
 export default {
     components: {
         PageHeader
     },
     setup() {
-
-      
+        const user = useStorage('user', null, undefined, {
+            serializer: {
+                read: (v) => v ? JSON.parse(v) : null,
+                write: (v) => JSON.stringify(v)
+            },
+        })
+        const router =  useRouter()
+        const onClick = () => {
+            user.value = null
+            router.push({
+                name:'Home'
+            })
+        }
         return {
-            
+            onClick
         }
     },
 }

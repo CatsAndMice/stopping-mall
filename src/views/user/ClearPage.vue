@@ -1,7 +1,5 @@
 <template>
     <page-header />
-
-
     <div style="padding:72px 47px;">
         <a-row style="margin-bottom: 35px;">
             <a-col
@@ -71,7 +69,7 @@
             <span>已选{{ list.length }}件商品</span>
             <span>总额￥{{ price }}</span>
         </div>
-        <a-button style="height:100%;width: 242px;font-size: 20px;" @click="toClearPage">立即结算</a-button>
+        <a-button style="height:100%;width: 242px;font-size: 20px;" @click="onPlay">立即结算</a-button>
     </div>
 
 
@@ -101,13 +99,14 @@
 </template>
 <script>
 import PageHeader from "@/components/PageHeader.vue"
-import { getCarList } from "@/http/getDetail.js"
+import { getCarList, addOrder } from "@/http/getDetail.js"
 import useList from "@/views/home/js/useList.js"
 import { useStorage } from '@vueuse/core'
-import { onBeforeMount, ref, watch, reactive, toRaw, computed } from '@vue/runtime-core'
+import { onBeforeMount, ref, watch, reactive, toRaw } from '@vue/runtime-core'
 import { useRouter } from "vue-router"
 import { isEmpty } from "medash"
 import { errorNotification } from "@/utils/notification.js"
+import { successNotification } from "@/utils/notification.js"
 
 export default {
     components: {
@@ -129,6 +128,7 @@ export default {
             },
         })
 
+
         const info = useStorage('info', '', undefined, {
             serializer: {
                 read: (v) => v ? JSON.parse(v) : null,
@@ -136,8 +136,16 @@ export default {
             },
         })
 
-        const address = ref(info.value)
 
+        const obj = useStorage('obj', null, undefined, {
+            serializer: {
+                read: (v) => v ? JSON.parse(v) : null,
+                write: (v) => JSON.stringify(v)
+            },
+        })
+
+        const address = ref(info.value)
+        const good_id = ref(0)
         const { list, getList } = useList(async () => {
             return getCarList({ 'user_id': user.value.id })
         })
@@ -168,30 +176,47 @@ export default {
                 errorNotification({ content: '请输入邮政编号' })
                 return false
             }
-            address.value =`${data.name} | ${data.address} | ${data.tel} | ${data.email}`
+            obj.value = data
+            address.value = `${data.name} | ${data.address} | ${data.tel} | ${data.email}`
             info.value = `${data.name} | ${data.address} | ${data.tel} | ${data.email}`
             data.name = ''
             data.address = ''
             data.tel = ''
             data.email = ''
             return true
-
         }
 
-
-        const toClearPage = () => {
-            router.push({
-                name: "ClearPage"
+        const onPlay = () => {
+            if (!obj.value) {
+                errorNotification({ content: '请添加邮政编码' })
+                return
+            }
+            addOrder({
+                payment_amount: price.value,
+                user_id: user.value.id,
+                address_id: info.value,
+                pay_status: checkedValue.value === '1' ? '微信' : '支付宝',
+                delivery_method: '快递',
+                remarks: "无",
+                goods_id:good_id.value
+            }, () => {
+                successNotification({ title: '订单成功' })
+                router.push({
+                    name:'OrderTable'
+                })
             })
         }
 
         watch(list, (value) => {
             let totalPrice = 0
+            let ids = []
             value.forEach(v => {
-                const { price = 0, num = 0 } = v
+                const { price = 0, num = 0, good_id } = v
                 totalPrice += price * num
+                ids.push(good_id)
             })
             price.value = totalPrice
+            good_id.value = ids.join(',')
         })
 
         onBeforeMount(getList)
@@ -199,7 +224,7 @@ export default {
         return {
             list,
             price,
-            toClearPage,
+            onPlay,
             visible,
             handleClick,
             form,

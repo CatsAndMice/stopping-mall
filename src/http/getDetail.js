@@ -30,3 +30,18 @@ export const getOrderGoodList = async (id) => {
     return getData(result)
 }
 
+
+export const getOrderTable = async (id) => {
+    const result = await axios.post(url + `/api/queryListOrder`, {
+        'user_id': id
+    })
+    return getData(result)
+}
+
+export const addOrder = async (params, cb) => {
+    const result = await axios.post(url + `/api/addOrder`, params)
+    const r = getData(result)
+    if (r.code === 0) {
+        cb()
+    }
+}

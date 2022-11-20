@@ -17,35 +17,39 @@
                 <a-image width="98" :preview="false" height="87"
                     src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2" />
                 <span style="margin-top:20px;font-size: 18px;">待支付</span>
-                <span style="font-size: 18px;">0单</span>
+                <span style="font-size: 18px;">{{list.unpaid?list.unpaid:0}}单</span>
             </a-col>
             <a-col :span="6"
                 style="cursor: pointer;display:flex;flex-direction: column;justify-content: center;align-items: center;">
                 <a-image width="98" :preview="false" height="87"
                     src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2" />
-                <span style="margin-top:20px;font-size: 18px;">待支付</span>
-                <span style="font-size: 18px;">0单</span>
+                <span style="margin-top:20px;font-size: 18px;">已支付</span>
+                <span style="font-size: 18px;">{{list.paid?list.paid:0}}单</span>
             </a-col>
             <a-col :span="6"
                 style="cursor: pointer;display:flex;flex-direction: column;justify-content: center;align-items: center;">
                 <a-image width="98" :preview="false" height="87"
                     src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2" />
-                <span style="margin-top:20px;font-size: 18px;">待支付</span>
-                <span style="font-size: 18px;">0单</span>
+                <span style="margin-top:20px;font-size: 18px;">已发货</span>
+                <span style="font-size: 18px;">{{list.unshipped?list.unshipped:0}}单</span>
             </a-col>
             <a-col :span="6"
                 style="cursor: pointer;display:flex;flex-direction: column;justify-content: center;align-items: center;">
                 <a-image width="98" :preview="false" height="87"
                     src="https://ts1.cn.mm.bing.net/th?id=OIP-C.wc_dCG_KbIKZwMdtD3gL2QHaEt&w=264&h=168&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2" />
-                <span style="margin-top:20px;font-size: 18px;">待支付</span>
-                <span style="font-size: 18px;">0单</span>
+                <span style="margin-top:20px;font-size: 18px;">已完成</span>
+                <span style="font-size: 18px;">{{list.completed?list.completed:0}}单</span>
             </a-col>
+          
         </a-row>
     </div>
 </template>
 <script>
-import { useRouter } from "vue-router"
+import {getOrderGoodList } from "@/http/getDetail.js"
 import { useStorage } from '@vueuse/core'
+import useList from "@/views/home/js/useList.js"
+import { useRouter } from "vue-router"
+import { onBeforeMount } from '@vue/runtime-core'
 export default {
     setup() {
         const router = useRouter()
@@ -61,9 +65,16 @@ export default {
             },
         })
 
+        const { list, getList } = useList(async () => {
+            return await getOrderGoodList(user.value.id)
+        })
+
+        onBeforeMount(getList)
+
         return {
             onClick,
-            user
+            user,
+            list
         }
     },
 }

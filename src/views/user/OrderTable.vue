@@ -4,42 +4,42 @@
             <template #columns>
                 <a-table-column title="订单号">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.id }}
                     </template>
                 </a-table-column>
                 <a-table-column title="下单时间">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.order_time }}
                     </template>
                 </a-table-column>
                 <a-table-column title="付款金额">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.payment_amount }}
                     </template>
                 </a-table-column>
                 <a-table-column title="收款人">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.user_no }}
                     </template>
                 </a-table-column>
                 <a-table-column title="付款状态">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{  getStutas(record.state)}}
                     </template>
                 </a-table-column>
                 <a-table-column title="配送方式">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.delivery_method }}
                     </template>
                 </a-table-column>
                 <a-table-column title="收货地址">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.address_id }}
                     </template>
                 </a-table-column>
                 <a-table-column title="备注">
                     <template #cell="{ record }">
-                        {{ record.name }}
+                        {{ record.remarks }}
                     </template>
                 </a-table-column>
 
@@ -50,7 +50,7 @@
 
 </template>
 <script>
-import { getOrderGoodList } from "@/http/getDetail.js"
+import { getOrderGoodList, getOrderTable } from "@/http/getDetail.js"
 import { onBeforeMount } from 'vue'
 import { useStorage } from '@vueuse/core'
 import useList from "@/views/home/js/useList.js"
@@ -63,13 +63,24 @@ export default {
             },
         })
         const { list, getList } = useList(async () => {
-            return await getOrderGoodList(user.value.id)
+            return await getOrderTable(user.value.id)
         })
-     
+
+        const getStutas = (state) => {
+            switch (state) {
+                case '1':
+                    return '已付款';
+                case '2':
+                    return '发货';
+                default:
+                    return '收货';
+            }
+        }
 
         onBeforeMount(getList)
         return {
-            list
+            list,
+            getStutas
         }
     },
 }

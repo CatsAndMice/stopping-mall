@@ -45,3 +45,11 @@ export const addOrder = async (params, cb) => {
         cb()
     }
 }
+
+export const update = async (params, cb) => {
+    const result = await axios.post(url + `/api/update`, params)
+    const r = getData(result)
+    if (r.code === 0) {
+        cb()
+    }
+}

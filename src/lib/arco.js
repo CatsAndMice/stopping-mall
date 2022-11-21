@@ -27,7 +27,8 @@ import {
     MenuItem,
     Table,
     TableColumn,
-    Modal
+    Modal,
+    Link,Empty
 } from "@arco-design/web-vue"
 import '@arco-design/web-vue/dist/arco.css';
 import {IconPlus,IconUser,IconWechatpay,IconAlipayCircle, IconLock ,IconHome,IconEmail} from '@arco-design/web-vue/es/icon';
@@ -62,6 +63,7 @@ export default {
             .use(IconHome)
             .use(IconEmail)
             .use(Table)
+            .use(Link)
             .use(TableColumn)
             .use(IconAlipayCircle)
             .use(IconWechatpay)
@@ -69,6 +71,7 @@ export default {
             .use(Modal)
             .use(Radio)
             .use(RadioGroup)
+            .use(Empty)
     }
 }
 

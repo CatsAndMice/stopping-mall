@@ -1,5 +1,4 @@
 <template>
-    <a-page-header title="注册" @back="onBack" />
     <div class="register-view">
         <div class="register-contain">
             <a-form :model="form" style="width: 300px;" @submit="handleSubmit">
@@ -83,7 +82,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .register-view {
-    height: calc(100vh - 59px);
+    height: 100vh;
     background-size: cover;
     background-image: url(https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/0265a04fddbd77a19602a15d9d55d797.png~tplv-uwbnlip3yd-webp.webp);
     position: relative;

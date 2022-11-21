@@ -1,7 +1,6 @@
 import { isObject } from "medash"
 
-isObject
-export const url = 'http://frwyvv.natappfree.cc'
+export const url = 'http://qtwqm8.natappfree.cc'
 
 export const getData = (result) => {
     if (isObject(result)) {

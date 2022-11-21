@@ -18,16 +18,14 @@
                             <icon-email />
                         </template>
                         <template #title>账号管理</template>
-                        <a-menu-item key="0_0">隐私服务</a-menu-item>
-                        <a-menu-item key="0_1">修改信息</a-menu-item>
+                        <a-menu-item key="0_0" @click="toServe">隐私服务</a-menu-item>
                     </a-sub-menu>
                     <a-sub-menu key="1">
                         <template #icon>
                             <icon-user />
                         </template>
                         <template #title>联系我们</template>
-                        <a-menu-item key="1_0">联系我们</a-menu-item>
-                        <a-menu-item key="1_1">帮助中心</a-menu-item>
+                        <a-menu-item key="1_0" @click="toAlert">联系我们</a-menu-item>
                     </a-sub-menu>
 
                     <a-menu-item key="0_0_0_0" @click="onClick">
@@ -46,7 +44,7 @@
 <script>
 import PageHeader from "@/components/PageHeader.vue"
 import { useStorage } from '@vueuse/core'
-import {useRouter} from "vue-router"
+import { useRouter } from "vue-router"
 export default {
     components: {
         PageHeader
@@ -58,15 +56,23 @@ export default {
                 write: (v) => JSON.stringify(v)
             },
         })
-        const router =  useRouter()
+        const router = useRouter()
         const onClick = () => {
             user.value = null
             router.push({
-                name:'Home'
+                name: 'Home'
             })
         }
+        const toServe = () => {
+            window.open('https://www.baidu.com/')
+        }
+        const toAlert = () => {
+            window.alert('电话号码:120')
+        }
         return {
-            onClick
+            onClick,
+            toServe,
+            toAlert
         }
     },
 }

@@ -48,7 +48,8 @@
                         <a-list style="width:288px" v-for="loss in lossList" :key="loss.id" :bordered="false"
                             :split="false">
                             <a-list-item style="padding:0">
-                                <a-image width="100%" height="183" :preview="false" :src="loss.img" @click="toGoodDetail(loss.id)"/>
+                                <a-image width="100%" height="183" :preview="false" :src="loss.img"
+                                    @click="toGoodDetail(loss.id)" />
                             </a-list-item>
                             <template #empty>
                             </template>
@@ -57,50 +58,7 @@
                 </a-col>
             </a-row>
 
-            <a-row style="margin-top: 58px;">
-                <a-col :span="3">
-                    护肤品类
-                </a-col>
-            </a-row>
-
-            <a-row>
-                <a-col :span="22" style="padding-left:4%;margin-top: 50px;">
-                    <div style="display:flex;flex-wrap: wrap;">
-                        <a-image v-for="type in typeList1" :preview="false" :key="type.id" style="margin-right:43px;"
-                            width="288" height="183" :src="type.img" @click="toGoodDetail(type.id)" />
-                    </div>
-                </a-col>
-            </a-row>
-
-            <a-row style="margin-top: 58px;">
-                <a-col :span="3">
-                    彩妆品类
-                </a-col>
-            </a-row>
-
-            <a-row>
-                <a-col :span="22" style="padding-left:4%;margin-top: 50px;">
-                    <div style="display:flex;flex-wrap: wrap;">
-                        <a-image v-for="type in typeList2" :preview="false" :key="type.id" style="margin-right:43px;"
-                            width="288" height="183" :src="type.img" @click="toGoodDetail(type.id)" />
-                    </div>
-                </a-col>
-            </a-row>
-
-            <a-row style="margin-top: 58px;">
-                <a-col :span="3">
-                    香水品类
-                </a-col>
-            </a-row>
-
-            <a-row>
-                <a-col :span="22" style="padding-left:4%;margin-top: 50px;">
-                    <div style="display:flex;flex-wrap: wrap;">
-                        <a-image v-for="type in typeList3" :preview="false" :key="type.id" style="margin-right:43px;"
-                            width="288" height="183" :src="type.img" @click="toGoodDetail(type.id)" />
-                    </div>
-                </a-col>
-            </a-row>
+            <label-good v-for="type in typeListRef" :key="type.id" :type="type" />
 
         </a-layout-content>
         <a-layout-footer>
@@ -114,13 +72,14 @@ import { onBeforeMount, shallowRef, unref } from 'vue'
 import useBanner from "./js/useBanner.js"
 import useList from "./js/useList.js"
 import { typeList } from "@/http/typeList.js"
-import { typeListImages } from "@/http/type"
 import { useRouter } from "vue-router"
 import { errorNotification } from "@/utils/notification.js"
+import LabelGood from "./LabelGood.vue"
 
 export default {
     components: {
-        PageHeader
+        PageHeader,
+        LabelGood
     },
     setup() {
         const router = useRouter()
@@ -131,21 +90,6 @@ export default {
 
         const { list: typeListRef, getList } = useList(async () => {
             return await typeList()
-        })
-        const { list: typeList1, getList: getList1 } = useList(async () => {
-            return await typeListImages('护肤品类')
-        })
-
-        const { list: typeList2, getList: getList2 } = useList(async () => {
-            return await typeListImages('彩妆品类')
-        })
-
-        const { list: typeList3, getList: getList3 } = useList(async () => {
-            return await typeListImages('香水品类')
-        })
-
-        const { list: typeList4, getList: getList4 } = useList(async () => {
-            return await typeListImages('男士')
         })
 
         const onSearch = () => {
@@ -174,20 +118,13 @@ export default {
             getBannerList()
             getList()
             lossBannerList()
-            getList1()
-            getList2()
-            getList3()
-            getList4()
+
         })
 
         return {
             images: list,
             typeListRef,
             lossList,
-            typeList1,
-            typeList2,
-            typeList3,
-            typeList4,
             goodName,
             onSearch,
             toGoodDetail

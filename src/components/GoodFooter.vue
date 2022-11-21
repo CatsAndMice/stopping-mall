@@ -5,8 +5,12 @@
                 <template #header>
                     支付/配送
                 </template>
-                <a-list-item>在线支付</a-list-item>
-                <a-list-item>配送时间</a-list-item>
+                <a-list-item>
+                    <a-link href="#">在线支付</a-link>
+                </a-list-item>
+                <a-list-item>
+                    <a-link href="#">配送时间</a-link>
+                </a-list-item>
             </a-list>
         </a-col>
         <a-col :span="5">
@@ -14,8 +18,12 @@
                 <template #header>
                     售后服务
                 </template>
-                <a-list-item>退换货规定</a-list-item>
-                <a-list-item>退换和退款说明</a-list-item>
+                <a-list-item>
+                    <a-link href="#">退换货规定</a-link>
+                </a-list-item>
+                <a-list-item>
+                    <a-link href="#">退换和退款说明</a-link>
+                </a-list-item>
             </a-list>
         </a-col>
         <a-col :span="5">
@@ -23,8 +31,12 @@
                 <template #header>
                     关于我们
                 </template>
-                <a-list-item>联系我们</a-list-item>
-                <a-list-item>隐私政策</a-list-item>
+                <a-list-item>
+                    <a-link href="#">联系我们</a-link>
+                </a-list-item>
+                <a-list-item>
+                    <a-link href="#">隐私政策</a-link>
+                </a-list-item>
             </a-list>
         </a-col>
         <a-col :span="9">

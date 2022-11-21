@@ -1,6 +1,6 @@
 <template>
     <div style="margin-left:37px;flex-grow: 1;padding-right:42px;">
-        <a-table :data="list">
+        <a-table :data="list" :bordered="{wrapper: true, cell: true}" >
             <template #columns>
                 <a-table-column title="订单号">
                     <template #cell="{ record }">
@@ -24,7 +24,7 @@
                 </a-table-column>
                 <a-table-column title="付款状态">
                     <template #cell="{ record }">
-                        {{  getStutas(record.state)}}
+                        {{ getStutas(record.state) }}
                     </template>
                 </a-table-column>
                 <a-table-column title="配送方式">
@@ -42,7 +42,11 @@
                         {{ record.remarks }}
                     </template>
                 </a-table-column>
-
+                <a-table-column title="操作">
+                    <template #cell="{ record }">
+                        <a-button v-show="record.state == '2'" type="primary" @click="onClick(record.id)">收货</a-button>
+                    </template>
+                </a-table-column>
             </template>
         </a-table>
 
@@ -50,7 +54,7 @@
 
 </template>
 <script>
-import { getOrderGoodList, getOrderTable } from "@/http/getDetail.js"
+import { getOrderGoodList, getOrderTable,update } from "@/http/getDetail.js"
 import { onBeforeMount } from 'vue'
 import { useStorage } from '@vueuse/core'
 import useList from "@/views/home/js/useList.js"
@@ -77,10 +81,18 @@ export default {
             }
         }
 
+        const onClick = (id)=>{
+            update({
+                id,
+                state:'3'
+            },getList)
+        }
+
         onBeforeMount(getList)
         return {
             list,
-            getStutas
+            getStutas,
+            onClick
         }
     },
 }

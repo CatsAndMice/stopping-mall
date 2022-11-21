@@ -1,11 +1,14 @@
 <template>
     <page-header />
-    <div class="list" style="min-height:600px">
-        <good-cord v-for="type in typeListRef" :src="type.img" :id="type.id" :key="type.id" :title="type.trade_name"
-            :money="type.price" />
+
+    <div class="list" style="min-height:600px;position: relative;">
+        <a-empty style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);"
+            v-if="isZeroLen(typeListRef)" />
+        <good-cord v-else v-for="type in typeListRef" :src="type.img" :id="type.id" :key="type.id"
+            :title="type.trade_name" :money="type.price" />
     </div>
-    
-    <div style="display:flex;justify-content: center;">
+
+    <div v-if="!isZeroLen(typeListRef)" style="display:flex;justify-content: center;">
         <a-pagination :total="200" @change="onChange" />
     </div>
 
@@ -18,7 +21,7 @@ import { useRoute } from "vue-router"
 import { onBeforeMount } from '@vue/runtime-core'
 import GoodCord from "@/components/GoodCord.vue"
 import PageHeader from "@/components/PageHeader.vue"
-
+import { isZeroLen } from "medash"
 export default {
     components: {
         PageHeader,
@@ -47,7 +50,8 @@ export default {
 
         return {
             typeListRef,
-            onChange
+            onChange,
+            isZeroLen
         }
 
     },

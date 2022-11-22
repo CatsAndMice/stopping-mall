@@ -60,6 +60,20 @@
 
             <label-good v-for="type in typeListRef" :key="type.id" :type="type" />
 
+            <a-row style="margin:30px 0;">
+                <a-col style="padding:0 30px;display: flex;align-items: center;">
+                    <div style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+                        <div class="icon"></div>
+                        <div style=" font-weight: 500;">顺丰EMS速达</div>
+                    </div>
+                    <a-divider direction="vertical" />
+                    <div style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+                        <div class="icon"></div>
+                        <div style=" font-weight: 500;">顺丰EMS速达</div>
+                    </div>
+                    <a-divider direction="vertical" />
+                </a-col>
+            </a-row>
         </a-layout-content>
         <a-layout-footer>
             <good-footer />
@@ -132,3 +146,11 @@ export default {
     },
 }
 </script>
+<style lang="scss" scoped>
+.icon {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-image: url('../../../public/icon.png');
+}
+</style>

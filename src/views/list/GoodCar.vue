@@ -10,8 +10,8 @@
                     <h3 style="font-size:14px;">{{ l.brand }}</h3>
                     <div><span>价格</span><span style="margin-left:34px;font-size: 18px;">￥{{ l.price }}</span></div>
                     <div style="margin:50px 0 30px 0"><span>规格</span><span style="margin-left:34px;font-size: 18px;">{{
-                            l.norms
-                    }}套</span></div>
+                            l.norms+l.unit
+                    }}</span></div>
                     <div><span>数量</span><span style="margin-left:34px;font-size: 18px;">{{ l.num }}</span></div>
                 </div>
             </div>

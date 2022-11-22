@@ -1,12 +1,12 @@
 <template>
     <page-header />
     <div style="padding:72px 47px;text-align: left;display: flex;">
-        <a-image width="327" :preview="false" height="262" :src="list.img" />
+        <a-image width="327" :preview="false" height="262" :src="list.imgs" />
         <div style="margin-left:96px">
             <h3>{{ list.trade_name }}</h3>
-            <h3 style="font-size:14px">{{ list.unit }}</h3>
+            <h3 style="font-size:14px">{{ list.brand }}</h3>
             <div><span>价格</span><span style="margin-left:34px">￥{{ list.price }}</span></div>
-            <div style="margin:50px 0"><span>规格</span><span style="margin-left:34px">{{ list.norms }}套</span></div>
+            <div style="margin:50px 0"><span>规格</span><span style="margin-left:34px">{{ list.norms+list.unit }}</span></div>
             <div style="margin-bottom:40px;">
                 <a-input-number v-model="num" :style="{
                     width: '160px',
@@ -24,7 +24,7 @@
 
     <a-row style="padding-left:10%;margin-top: 20px;">
         <a-col :span="22">
-            <a-image width="100%" height="219px" :preview="false" :src="list.commodity_details" />
+            <a-image v-for="img in list.commodity_details" width="100%" :key="img" :preview="false" :src="img" />
         </a-col>
     </a-row>
     <good-footer />
